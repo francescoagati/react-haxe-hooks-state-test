@@ -1,0 +1,9 @@
+-cp src
+-D analyzer-optimize
+-main Main
+-js main.js
+-lib thx.core
+-dce full
+-D analyzer
+-D analyer-module
+-cmd node main.js
