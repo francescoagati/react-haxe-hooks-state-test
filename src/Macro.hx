@@ -13,13 +13,14 @@ class Macro {
     };
   }
 
-  public static macro function set_path<T>(obj:ExprOf<T>,path:Expr,value:Expr) {
+  public static macro function set_path<T>(obj:ExprOf<T>,path:Expr) {
     var s_path = path.toString().replace("_.","");
     var pos = haxe.macro.Context.currentPos();
-    return macro {
+    return macro function update(v) {
       var _ = $obj;
-      @:pos(pos) {$path == $value;};
-      thx.Objects.setPath(_,$v{s_path},$value);
+      //@:pos(pos) {$path == $value;};
+      thx.Objects.setPath(_,$v{s_path},v);
+      setState(_,_);
     };
   }
 

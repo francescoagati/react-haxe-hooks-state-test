@@ -33,9 +33,16 @@ HxOverrides.iter = function(a) {
 var Main = function() { };
 Main.__name__ = true;
 Main.main = function() {
-	console.log("src/Main.hx:14:",thx_Objects.getPath(Main.player,"profile.age"));
-	thx_Objects.setPath(Main.player,"profile.age",33);
-	console.log("src/Main.hx:16:",thx_Objects.getPath(Main.player,"profile.age"));
+	var setState = function(old,nw) {
+		console.log("src/Main.hx:17:",nw);
+	};
+	console.log("src/Main.hx:21:",thx_Objects.getPath(Main.player,"profile.age"));
+	(function(v) {
+		var _ = Main.player;
+		thx_Objects.setPath(_,"profile.age",v);
+		setState(_,_);
+	})(100);
+	console.log("src/Main.hx:23:",thx_Objects.getPath(Main.player,"profile.age"));
 };
 Math.__name__ = true;
 var Reflect = function() { };
